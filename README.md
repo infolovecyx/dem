@@ -17,21 +17,22 @@ node server.js        # ou : npm start
 - Boutique : [http://127.0.0.1:3000](http://127.0.0.1:3000)
 - Panel admin : [http://127.0.0.1:3000/#/admin](http://127.0.0.1:3000/#/admin) — token par défaut : `dev-admin-token-change-me`
 
-Le serveur n'écoute que sur `127.0.0.1` (boucle locale uniquement).
+Par défaut le serveur n'écoute que sur `127.0.0.1` (boucle locale uniquement) — voir `docs/deploiement.md` pour la mise en ligne.
 
 ## Tests
 
 ```bash
-npm test              # 12 tests d'API (node:test, base en mémoire)
+npm test              # 13 tests d'API (node:test, base en mémoire)
 ```
 
 ## Configuration (variables d'environnement)
 
 | Variable       | Défaut                  | Rôle                                  |
 |----------------|-------------------------|---------------------------------------|
+| `HOST`         | `127.0.0.1`             | Adresse d'écoute (`0.0.0.0` uniquement derrière un hébergeur/proxy) |
 | `PORT`         | `3000`                  | Port d'écoute                         |
 | `DB_PATH`      | `data/shop.db`          | Fichier SQLite                        |
-| `ADMIN_TOKEN`  | `dev-admin-token-change-me` | Token requis pour les routes `/api/admin/*` (en-tête `x-admin-token`) |
+| `ADMIN_TOKEN`  | `dev-admin-token-change-me` | Token requis pour les routes `/api/admin/*` (en-tête `x-admin-token`) — **à changer impérativement avant toute mise en ligne** |
 
 ## Fonctionnalités
 
@@ -65,6 +66,7 @@ Les prix sont stockés en centimes (`price_cents`) pour éviter les erreurs d'ar
 - `kit-lancement-pub.md` — plan pub 3 mois, 5 scripts vidéo UGC, 10 annonces, KPIs
 - `rfq-fournisseurs.md` — mail RFQ fournisseurs Chine + grille d'évaluation /20
 - `emails-stakeholders.md` — 12 mails prêts (notaire, comptable, assureur, labos, transitaires, 3PL, Mollie, registrar, BOIP, banque, APD)
+- `deploiement.md` — mise en ligne : démo gratuite (Render/Railway) ou VPS UE (nginx + HTTPS)
 
 ## Structure
 
@@ -74,7 +76,7 @@ money-online/
 ├── db.js              # Schéma SQLite + données de démo
 ├── public/            # SPA (index.html, styles.css, app.js)
 ├── test/api.test.js   # Tests d'API
-├── docs/              # Étude de marché, pricing, kit pub, RFQ, mails stakeholders
+├── docs/              # Étude de marché, pricing, kit pub, RFQ, mails stakeholders, déploiement
 └── data/              # Base SQLite (créée au premier lancement)
 ```
 
